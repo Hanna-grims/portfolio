@@ -1,0 +1,573 @@
+
+<style>
+:root {
+  --gold:#c9a84c;--gold-l:#e8c96a;--red:#c0392b;
+  --bg:#0a0a0f;--bg2:#12111a;--bgc:#1e1c2a;
+  --tp:#fdfaf5;--ts:#f7f0e0;--tm:#8a8099;
+  --bd:rgba(201,168,76,0.18);--tr:0.3s ease;
+}
+[data-theme=light]{
+  --bg:#f8f5ef;--bg2:#efe9dc;--bgc:#ffffff;
+  --tp:#1a1625;--ts:#2e2840;--tm:#6b6080;
+  --bd:rgba(139,100,30,0.2);
+  --gold:#9a6f1e;--gold-l:#b8891f;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:Georgia,serif;background:var(--bg);color:var(--tp);transition:background var(--tr),color var(--tr);}
+a{text-decoration:none;color:inherit;}
+
+.nav{position:sticky;top:0;z-index:50;background:var(--bg2);border-bottom:1px solid var(--bd);padding:.7rem 1.5rem;display:flex;align-items:center;justify-content:space-between;}
+.nav-brand{font-family:Palatino,serif;font-size:1rem;letter-spacing:.12em;color:var(--gold);}
+.nav-right{display:flex;align-items:center;gap:1.5rem;}
+.nav-links{display:flex;gap:1.2rem;}
+.nav-links a{font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--tm);transition:color var(--tr);}
+.nav-links a:hover{color:var(--gold);}
+.theme-toggle{background:none;border:1px solid var(--bd);padding:.3rem .65rem;cursor:pointer;color:var(--tm);font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;transition:all var(--tr);display:flex;align-items:center;gap:.35rem;}
+.theme-toggle:hover{border-color:var(--gold);color:var(--gold);}
+
+.hero{padding:5rem 1.5rem 4rem;text-align:center;border-bottom:1px solid var(--bd);}
+.hero-sub{font-size:.72rem;letter-spacing:.3em;text-transform:uppercase;color:var(--gold);margin-bottom:1rem;}
+.hero-kanji{font-size:.9rem;letter-spacing:.6em;color:var(--tm);margin-bottom:.7rem;}
+.hero-title{font-family:Palatino,serif;font-size:clamp(2.5rem,7vw,5.5rem);font-weight:400;line-height:.95;color:var(--tp);margin-bottom:.4em;}
+.hero-title em{color:var(--gold);font-style:italic;}
+.hero-desc{font-size:1rem;font-style:italic;color:var(--tm);margin-bottom:1.8rem;}
+.hero-pills{display:flex;gap:.6rem;justify-content:center;flex-wrap:wrap;margin-bottom:2rem;}
+.pill{font-size:.65rem;letter-spacing:.1em;text-transform:uppercase;padding:.3rem .8rem;border:1px solid var(--bd);color:var(--tm);}
+.hero-btns{display:flex;gap:.6rem;justify-content:center;}
+.btn{font-size:.68rem;letter-spacing:.13em;text-transform:uppercase;padding:.7rem 1.6rem;border:1px solid;cursor:pointer;transition:all var(--tr);font-family:inherit;}
+.btn-gold{background:var(--gold);border-color:var(--gold);color:var(--bg);}
+.btn-gold:hover{background:var(--gold-l);}
+.btn-outline{background:transparent;border-color:var(--bd);color:var(--gold);}
+.btn-outline:hover{border-color:var(--gold);}
+
+section{padding:4rem 1.5rem;border-bottom:1px solid var(--bd);}
+.si{max-width:960px;margin:0 auto;}
+.eyebrow{font-size:.62rem;letter-spacing:.28em;text-transform:uppercase;color:var(--gold);margin-bottom:.5rem;display:flex;align-items:center;gap:.7rem;}
+.eyebrow::before{content:'';width:28px;height:1px;background:var(--gold);}
+.stitle{font-family:Palatino,serif;font-size:clamp(1.6rem,3.5vw,2.6rem);font-weight:400;color:var(--tp);line-height:1.1;margin-bottom:2rem;}
+.stitle em{color:var(--gold);font-style:italic;}
+
+.ov2{display:grid;grid-template-columns:220px 1fr;gap:3rem;align-items:start;}
+.poster-box{background:var(--bgc);border:1px solid var(--bd);padding:1.5rem;text-align:center;position:relative;}
+.poster-kanji{font-size:3rem;color:var(--gold);opacity:.7;display:block;margin-bottom:.4rem;}
+.poster-name{font-size:.72rem;letter-spacing:.13em;text-transform:uppercase;color:var(--tm);}
+.award-badge{position:absolute;top:-10px;right:-10px;background:var(--red);color:#fff;width:56px;height:56px;border-radius:50%;display:flex;flex-direction:column;align-items:center;justify-content:center;font-size:.55rem;line-height:1.3;text-align:center;}
+.award-badge strong{font-size:.9rem;display:block;}
+.ov-body p{font-size:.95rem;line-height:1.85;color:var(--tm);margin-bottom:1rem;}
+.ov-body strong{color:var(--tp);}
+.ov-body em{color:var(--gold);font-style:italic;}
+blockquote{border-left:2px solid var(--gold);padding:.7rem 1rem;background:rgba(201,168,76,.04);margin:1.2rem 0;}
+blockquote p{font-style:italic;color:var(--ts);font-size:1rem;margin-bottom:.3rem;}
+blockquote cite{font-size:.72rem;letter-spacing:.08em;color:var(--tm);}
+.fd{display:grid;grid-template-columns:1fr 1fr;border:1px solid var(--bd);margin-top:1.2rem;}
+.di{padding:.6rem .9rem;border-bottom:1px solid var(--bd);border-right:1px solid var(--bd);}
+.di:nth-child(even){border-right:none;}
+.dl{font-size:.6rem;letter-spacing:.12em;text-transform:uppercase;color:var(--tm);margin-bottom:.2rem;}
+.dv{font-size:.85rem;color:var(--tp);}
+
+.s2{display:grid;grid-template-columns:140px 1fr;gap:3rem;}
+.stoc{position:sticky;top:72px;height:fit-content;}
+.titem{font-size:.72rem;letter-spacing:.05em;color:var(--tm);padding:.5rem 0;border-bottom:1px solid var(--bd);display:flex;align-items:center;gap:.5rem;cursor:pointer;transition:color var(--tr);}
+.titem:hover{color:var(--gold);}
+.tnum{font-size:.62rem;color:var(--gold);opacity:.5;min-width:16px;}
+.beat{margin-bottom:2rem;padding-bottom:2rem;border-bottom:1px solid var(--bd);}
+.beat:last-child{border-bottom:none;}
+.bnum{font-family:Palatino,serif;font-size:3rem;color:var(--bd);line-height:1;margin-bottom:-.4rem;}
+.btitle{font-family:Palatino,serif;font-size:1.05rem;color:var(--gold);margin-bottom:.6rem;font-weight:400;}
+.btext{font-size:.9rem;line-height:1.8;color:var(--tm);}
+.btext strong{color:var(--tp);font-weight:normal;font-style:italic;}
+
+.cfilters{display:flex;gap:.45rem;margin-bottom:1.8rem;flex-wrap:wrap;}
+.fbtn{font-size:.62rem;letter-spacing:.12em;text-transform:uppercase;padding:.35rem .9rem;border:1px solid var(--bd);background:transparent;color:var(--tm);cursor:pointer;transition:all var(--tr);font-family:inherit;}
+.fbtn.active,.fbtn:hover{border-color:var(--gold);color:var(--gold);background:rgba(201,168,76,.05);}
+.cgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:1rem;}
+.ccard{border:1px solid var(--bd);background:var(--bgc);transition:transform var(--tr),border-color var(--tr);}
+.ccard:hover{transform:translateY(-4px);border-color:rgba(201,168,76,.4);}
+.cstrip{height:4px;}
+.cbody{padding:.9rem;}
+.cname{font-family:Palatino,serif;font-size:.9rem;color:var(--tp);margin-bottom:.2rem;}
+.crole{font-size:.67rem;color:var(--gold);letter-spacing:.05em;margin-bottom:.5rem;}
+.cdesc{font-size:.78rem;color:var(--tm);line-height:1.55;}
+
+.tgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;}
+.tcell{background:var(--bgc);padding:1.8rem 1.5rem;border-bottom:2px solid transparent;transition:border-color var(--tr);}
+.tcell:hover{border-bottom-color:var(--gold);}
+.tnum2{font-family:Palatino,serif;font-size:2.8rem;color:var(--bd);line-height:1;margin-bottom:.6rem;}
+.ttitle{font-size:.85rem;color:var(--gold);letter-spacing:.04em;margin-bottom:.6rem;font-family:Palatino,serif;}
+.ttext{font-size:.82rem;line-height:1.72;color:var(--tm);}
+
+/* ===== MOVIE GALLERY ===== */
+.mg-filters{display:flex;gap:.45rem;margin-bottom:1.8rem;flex-wrap:wrap;}
+.mg-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:1.25rem;}
+.mg-card{border:1px solid var(--bd);background:var(--bgc);cursor:pointer;transition:transform var(--tr),border-color var(--tr);overflow:hidden;}
+.mg-card:hover{transform:translateY(-5px);border-color:rgba(201,168,76,.45);}
+.mg-poster{height:280px;display:flex;flex-direction:column;align-items:center;justify-content:center;position:relative;overflow:hidden;}
+.mg-poster-overlay{position:absolute;inset:0;background:rgba(0,0,0,.6);display:flex;align-items:center;justify-content:center;opacity:0;transition:opacity var(--tr);}
+.mg-card:hover .mg-poster-overlay{opacity:1;}
+.mg-play-icon{width:44px;height:44px;border-radius:50%;border:2px solid var(--gold);display:flex;align-items:center;justify-content:center;color:var(--gold);}
+.mg-info{padding:.9rem;}
+.mg-title{font-family:Palatino,serif;font-size:.95rem;color:var(--tp);margin-bottom:.3rem;}
+.mg-year{font-size:.68rem;color:var(--gold);letter-spacing:.08em;margin-bottom:.4rem;}
+.mg-rating{display:flex;align-items:center;gap:.35rem;font-size:.75rem;color:var(--tm);}
+.mg-stars{color:var(--gold);letter-spacing:-.05em;}
+
+/* MODAL OVERLAY */
+.modal-wrap{display:none;min-height:600px;background:rgba(0,0,0,.75);align-items:flex-start;justify-content:center;padding:2rem 1rem;}
+.modal-wrap.open{display:flex;}
+.modal{background:var(--bg2);border:1px solid var(--bd);max-width:780px;width:100%;max-height:80vh;overflow-y:auto;}
+.modal-header{padding:1.2rem 1.5rem;border-bottom:1px solid var(--bd);display:flex;justify-content:space-between;align-items:center;}
+.modal-close{background:none;border:none;font-size:1.3rem;color:var(--tm);cursor:pointer;line-height:1;transition:color var(--tr);padding:0;}
+.modal-close:hover{color:var(--gold);}
+.modal-body{padding:1.5rem;}
+.modal-two{display:grid;grid-template-columns:160px 1fr;gap:1.5rem;margin-bottom:1.5rem;}
+.modal-poster{border:1px solid var(--bd);background:var(--bgc);display:flex;flex-direction:column;align-items:center;justify-content:center;padding:1.5rem;text-align:center;min-height:200px;}
+.modal-poster-kanji{font-size:2.5rem;color:var(--gold);opacity:.7;margin-bottom:.4rem;}
+.modal-poster-title{font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;color:var(--tm);}
+.modal-meta-title{font-family:Palatino,serif;font-size:1.3rem;color:var(--tp);margin-bottom:.4rem;}
+.modal-rating-row{display:flex;align-items:center;gap:.8rem;margin-bottom:.8rem;}
+.modal-badge{font-size:.65rem;letter-spacing:.1em;text-transform:uppercase;padding:.25rem .7rem;border-radius:3px;}
+.badge-genre{background:rgba(201,168,76,.12);color:var(--gold);border:1px solid rgba(201,168,76,.25);}
+.badge-year{background:rgba(255,255,255,.06);color:var(--tm);border:1px solid var(--bd);}
+.modal-score{display:flex;align-items:center;gap:.4rem;font-size:.85rem;color:var(--gold);}
+.modal-synopsis{font-size:.9rem;line-height:1.8;color:var(--tm);margin-bottom:1.2rem;}
+.modal-details{display:grid;grid-template-columns:1fr 1fr;gap:2px;border:1px solid var(--bd);margin-bottom:1.5rem;}
+.md-item{padding:.55rem .85rem;border-bottom:1px solid var(--bd);border-right:1px solid var(--bd);}
+.md-item:nth-child(even){border-right:none;}
+.md-label{font-size:.6rem;letter-spacing:.12em;text-transform:uppercase;color:var(--tm);margin-bottom:.2rem;}
+.md-value{font-size:.82rem;color:var(--tp);}
+.media-section{border-top:1px solid var(--bd);padding-top:1.2rem;}
+.media-label{font-size:.65rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:.9rem;display:flex;align-items:center;gap:.6rem;}
+.media-label::before{content:'';width:22px;height:1px;background:var(--gold);}
+.trailer-box{border:1px solid var(--bd);background:var(--bgc);overflow:hidden;}
+.trailer-box iframe{width:100%;height:300px;border:none;display:block;}
+.audio-row{display:flex;flex-direction:column;gap:.6rem;margin-top:.8rem;}
+.audio-item{background:var(--bgc);border:1px solid var(--bd);padding:.7rem 1rem;}
+.audio-label{font-size:.72rem;color:var(--tm);margin-bottom:.4rem;letter-spacing:.04em;}
+.audio-item audio{width:100%;height:36px;}
+
+/* REVIEWS */
+.rev2{display:grid;grid-template-columns:1fr 1fr;gap:2.5rem;align-items:start;}
+.rform{border:1px solid var(--bd);padding:1.8rem;background:var(--bgc);}
+.flabel{display:block;font-size:.62rem;letter-spacing:.16em;text-transform:uppercase;color:var(--tm);margin-bottom:.45rem;}
+.fg{margin-bottom:1rem;}
+input[type=text],textarea{width:100%;background:var(--bg2);border:1px solid var(--bd);color:var(--tp);padding:.6rem .85rem;font-family:inherit;font-size:.88rem;outline:none;transition:border-color var(--tr);resize:vertical;}
+input[type=text]:focus,textarea:focus{border-color:var(--gold);}
+input[type=text]::placeholder,textarea::placeholder{color:var(--tm);}
+.stars-row{display:flex;gap:.35rem;}
+.sbtn{background:none;border:none;font-size:1.3rem;color:var(--bd);cursor:pointer;padding:0;transition:color var(--tr);line-height:1;}
+.sbtn.active{color:var(--gold);}
+.subbtn{width:100%;font-family:inherit;font-size:.68rem;letter-spacing:.13em;text-transform:uppercase;padding:.7rem;background:var(--gold);border:none;color:var(--bg);cursor:pointer;transition:background var(--tr);}
+.subbtn:hover{background:var(--gold-l);}
+.okMsg{display:none;font-style:italic;color:var(--gold);text-align:center;margin-top:.7rem;font-size:.82rem;}
+.rlist{display:flex;flex-direction:column;gap:.9rem;}
+.rcard{border:1px solid var(--bd);padding:1.1rem;background:var(--bgc);}
+.rhead{display:flex;justify-content:space-between;align-items:center;margin-bottom:.5rem;}
+.rname{font-size:.82rem;font-family:Palatino,serif;color:var(--tp);}
+.rstars{color:var(--gold);font-size:.82rem;}
+.rtext{font-size:.87rem;font-style:italic;color:var(--tm);line-height:1.6;}
+
+footer{padding:2.5rem 1.5rem;text-align:center;background:var(--bg2);}
+.ftitle{font-family:Palatino,serif;font-size:1.3rem;color:var(--gold);letter-spacing:.14em;margin-bottom:.4rem;}
+.fkanji{font-size:.85rem;letter-spacing:.5em;color:var(--tm);margin-bottom:1.2rem;}
+.fcopy{font-size:.72rem;color:var(--tm);line-height:2;}
+
+@media(max-width:640px){
+  .ov2,.s2,.rev2{grid-template-columns:1fr;}
+  .tgrid{grid-template-columns:1fr;}
+  .modal-two{grid-template-columns:1fr;}
+  .nav-links{display:none;}
+  .stoc{display:none;}
+}
+</style>
+
+<nav class="nav">
+  <div class="nav-brand">Sen to Chihiro</div>
+  <div class="nav-right">
+    <div class="nav-links">
+      <a href="#overview">Overview</a>
+      <a href="#story">Story</a>
+      <a href="#characters">Characters</a>
+      <a href="#themes">Themes</a>
+      <a href="#gallery">Gallery</a>
+      <a href="#reviews">Reviews</a>
+    </div>
+    <button class="theme-toggle" onclick="toggleTheme()" id="themeBtn">
+      <i class="ti ti-sun" aria-hidden="true"></i> Light
+    </button>
+  </div>
+</nav>
+
+<div class="hero">
+  <p class="hero-sub">Hayao Miyazaki · 2001 · Studio Ghibli</p>
+  <p class="hero-kanji">千と千尋の神隠し</p>
+  <h1 class="hero-title"><em>Spirited</em><br>Away</h1>
+  <p class="hero-desc">Sen to Chihiro no Kamikakushi — a journey beyond the spirit world</p>
+  <div class="hero-pills">
+    <span class="pill">2001</span><span class="pill">125 min</span><span class="pill">Studio Ghibli</span><span class="pill">Academy Award</span>
+  </div>
+  <div class="hero-btns">
+    <a href="#overview" class="btn btn-gold">Explore the Film</a>
+    <a href="#gallery" class="btn btn-outline">Movie Gallery</a>
+  </div>
+</div>
+
+<section id="overview">
+  <div class="si">
+    <p class="eyebrow">Overview</p>
+    <h2 class="stitle">About the <em>Film</em></h2>
+    <div class="ov2">
+      <div>
+        <div class="poster-box">
+          <span class="poster-kanji">千</span>
+          <div class="poster-name">Spirited Away</div>
+          <div style="font-size:.68rem;color:var(--tm);margin-top:.25rem;">2001 · Studio Ghibli</div>
+          <div class="award-badge"><strong>AA</strong>Best<br>Animated</div>
+        </div>
+      </div>
+      <div class="ov-body">
+        <p><strong>Spirited Away</strong> (千と千尋の神隠し) is a 2001 Japanese animated fantasy film written and directed by <em>Hayao Miyazaki</em> and produced by Studio Ghibli. It became the highest-grossing film in Japanese history and won the Academy Award for Best Animated Feature.</p>
+        <p>The story follows <strong>Chihiro Ogino</strong>, a ten-year-old girl who enters the spirit world by accident. After her parents are transformed into pigs, she must work at a bathhouse run by the witch <strong>Yubaba</strong> to find a way to free herself and her family.</p>
+        <blockquote>
+          <p>"Once you've met someone you never really forget them. It just takes a while for your memories to return."</p>
+          <cite>— Zeniba, Spirited Away</cite>
+        </blockquote>
+        <div class="fd">
+          <div class="di"><div class="dl">Director</div><div class="dv">Hayao Miyazaki</div></div>
+          <div class="di"><div class="dl">Studio</div><div class="dv">Studio Ghibli</div></div>
+          <div class="di"><div class="dl">Release</div><div class="dv">July 20, 2001</div></div>
+          <div class="di"><div class="dl">Runtime</div><div class="dv">125 minutes</div></div>
+          <div class="di"><div class="dl">Music</div><div class="dv">Joe Hisaishi</div></div>
+          <div class="di"><div class="dl">Award</div><div class="dv">Academy Award 2003</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="story" style="background:var(--bg2);">
+  <div class="si">
+    <p class="eyebrow">The Journey</p>
+    <h2 class="stitle">Story &amp; <em>Plot</em></h2>
+    <div class="s2">
+      <div class="stoc">
+        <div class="titem"><span class="tnum">01</span> The Crossing</div>
+        <div class="titem"><span class="tnum">02</span> The Bathhouse</div>
+        <div class="titem"><span class="tnum">03</span> Becoming Sen</div>
+        <div class="titem"><span class="tnum">04</span> No-Face</div>
+        <div class="titem"><span class="tnum">05</span> The Sea Train</div>
+        <div class="titem"><span class="tnum">06</span> Remembering</div>
+      </div>
+      <div>
+        <div class="beat"><div class="bnum">01</div><div class="btitle">The Crossing</div><p class="btext">While moving to a new town, Chihiro and her family take a wrong turn and end up in what her father believes is an abandoned theme park. As night falls, her parents begin eating spirit food — and are transformed into pigs. Chihiro is suddenly alone in a world she doesn't understand.</p></div>
+        <div class="beat"><div class="bnum">02</div><div class="btitle">The Bathhouse</div><p class="btext">With help from a mysterious boy named <strong>Haku</strong>, Chihiro enters the bathhouse — a grand establishment serving the gods and spirits of Japan. The witch <strong>Yubaba</strong> rules this world, taking workers' names to bind them to her service.</p></div>
+        <div class="beat"><div class="bnum">03</div><div class="btitle">Becoming Sen</div><p class="btext">Yubaba takes Chihiro's name, renaming her <strong>Sen</strong>. Stripped of her identity, she throws herself into hard work, befriending <strong>Lin</strong> and discovering that Haku has a painful secret connected to her past.</p></div>
+        <div class="beat"><div class="bnum">04</div><div class="btitle">No-Face</div><p class="btext">A silent spirit called <strong>No-Face</strong> — drawn to Chihiro's kindness — enters the bathhouse and grows monstrous in his loneliness. Only Sen can calm him. His story mirrors the film's meditation on greed and what it means to be truly seen.</p></div>
+        <div class="beat"><div class="bnum">05</div><div class="btitle">The Sea Train</div><p class="btext">To save Haku, Sen must travel across a flooded landscape by train to visit Yubaba's twin sister <strong>Zeniba</strong>. A quiet, melancholy journey — a train crossing shallow water under a grey sky.</p></div>
+        <div class="beat"><div class="bnum">06</div><div class="btitle">Remembering</div><p class="btext">Sen remembers Haku's true name — the spirit of the <strong>Kohaku River</strong>. Her memory breaks Yubaba's spell. Given one final test, she passes by trusting her instincts and crosses back with her parents restored.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="characters">
+  <div class="si">
+    <p class="eyebrow">The People</p>
+    <h2 class="stitle">Meet the <em>Characters</em></h2>
+    <div class="cfilters">
+      <button class="fbtn active" onclick="filterChars('all',this)">All</button>
+      <button class="fbtn" onclick="filterChars('main',this)">Main</button>
+      <button class="fbtn" onclick="filterChars('spirits',this)">Spirits</button>
+      <button class="fbtn" onclick="filterChars('workers',this)">Bathhouse</button>
+    </div>
+    <div class="cgrid" id="charGrid">
+      <div class="ccard" data-cat="main"><div class="cstrip" style="background:#7c5c8a;"></div><div class="cbody"><div class="cname">Chihiro Ogino</div><div class="crole">Protagonist · Sen</div><p class="cdesc">A stubborn, fearful girl who grows through hard work and compassion into someone worthy of her own name.</p></div></div>
+      <div class="ccard" data-cat="main"><div class="cstrip" style="background:#2d6e9e;"></div><div class="cbody"><div class="cname">Haku</div><div class="crole">Spirit of Kohaku River</div><p class="cdesc">A mysterious boy whose true identity is a secret bound to Chihiro's childhood.</p></div></div>
+      <div class="ccard" data-cat="spirits"><div class="cstrip" style="background:#9e4e2d;"></div><div class="cbody"><div class="cname">Yubaba</div><div class="crole">Witch · Bathhouse Owner</div><p class="cdesc">A fearsome but fair sorceress who takes names and binds workers to her service.</p></div></div>
+      <div class="ccard" data-cat="spirits"><div class="cstrip" style="background:#3a3a4a;"></div><div class="cbody"><div class="cname">No-Face</div><div class="crole">Spirit · Wanderer</div><p class="cdesc">A faceless spirit of longing — gentle with kindness, monstrous with greed.</p></div></div>
+      <div class="ccard" data-cat="workers"><div class="cstrip" style="background:#3e6e35;"></div><div class="cbody"><div class="cname">Lin (Rin)</div><div class="crole">Bathhouse Worker</div><p class="cdesc">Sharp-tongued but kind — Chihiro's closest friend in the spirit world.</p></div></div>
+      <div class="ccard" data-cat="spirits"><div class="cstrip" style="background:#5e4e8a;"></div><div class="cbody"><div class="cname">Zeniba</div><div class="crole">Yubaba's Twin Sister</div><p class="cdesc">Warm and wise where her sister is cold. She offers Chihiro the most important truths.</p></div></div>
+      <div class="ccard" data-cat="workers"><div class="cstrip" style="background:#5e7e35;"></div><div class="cbody"><div class="cname">Kamaji</div><div class="crole">Boiler Man</div><p class="cdesc">A six-armed elder who runs the boiler room — gruff, but secretly kind.</p></div></div>
+      <div class="ccard" data-cat="main"><div class="cstrip" style="background:#9e3a3a;"></div><div class="cbody"><div class="cname">Chihiro's Parents</div><div class="crole">Akio &amp; Yuko Ogino</div><p class="cdesc">Transformed into pigs by Yubaba's magic — the reason for Chihiro's entire journey.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<section id="themes" style="background:var(--bg2);">
+  <div class="si">
+    <p class="eyebrow">Deeper Meaning</p>
+    <h2 class="stitle" style="text-align:center;max-width:440px;margin:0 auto 2rem;">Themes &amp; <em>Symbolism</em></h2>
+    <div class="tgrid">
+      <div class="tcell"><div class="tnum2">01</div><div class="ttitle">Identity &amp; Memory</div><p class="ttext">Yubaba steals names to control. Chihiro's journey is about holding onto who she is — identity is both fragile and unbreakable.</p></div>
+      <div class="tcell"><div class="tnum2">02</div><div class="ttitle">Work &amp; Dignity</div><p class="ttext">Chihiro earns her freedom through honest labor. Miyazaki presents work not as punishment but as something that gives life purpose.</p></div>
+      <div class="tcell"><div class="tnum2">03</div><div class="ttitle">Greed &amp; Consumption</div><p class="ttext">No-Face consuming everything mirrors the film's critique of unchecked materialism and Japan's economic bubble.</p></div>
+      <div class="tcell"><div class="tnum2">04</div><div class="ttitle">Nature &amp; Spirits</div><p class="ttext">Haku is a river spirit. The stink god is a polluted river. Miyazaki's ecological grief is embedded in every spirit.</p></div>
+      <div class="tcell"><div class="tnum2">05</div><div class="ttitle">Growing Up</div><p class="ttext">Chihiro begins the film whining about moving. She ends it having outgrown everyone. Fear becomes courage.</p></div>
+      <div class="tcell"><div class="tnum2">06</div><div class="ttitle">Kindness as Power</div><p class="ttext">Every character saved — Haku, No-Face, the river god — is saved by Chihiro's instinctive empathy, not magic or strength.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- MOVIE GALLERY -->
+<section id="gallery">
+  <div class="si">
+    <p class="eyebrow">Movie Gallery</p>
+    <h2 class="stitle">Studio Ghibli <em>Films</em></h2>
+    <div class="mg-filters">
+      <button class="fbtn active" onclick="filterMovies('all',this)">All</button>
+      <button class="fbtn" onclick="filterMovies('fantasy',this)">Fantasy</button>
+      <button class="fbtn" onclick="filterMovies('adventure',this)">Adventure</button>
+      <button class="fbtn" onclick="filterMovies('drama',this)">Drama</button>
+    </div>
+    <div class="mg-grid" id="mgGrid"></div>
+  </div>
+</section>
+
+<!-- MODAL -->
+<div class="modal-wrap" id="modalWrap" onclick="closeModal(event)">
+  <div class="modal" id="modal">
+    <div class="modal-header">
+      <div style="font-family:Palatino,serif;font-size:1rem;color:var(--tp);" id="modalTitle">Film</div>
+      <button class="modal-close" onclick="closeModalDirect()" aria-label="Close"><i class="ti ti-x"></i></button>
+    </div>
+    <div class="modal-body">
+      <div class="modal-two">
+        <div class="modal-poster">
+          <div class="modal-poster-kanji" id="mPosterKanji">千</div>
+          <div class="modal-poster-title" id="mPosterTitle">Title</div>
+        </div>
+        <div>
+          <div class="modal-meta-title" id="mTitle"></div>
+          <div class="modal-rating-row">
+            <span class="modal-badge badge-genre" id="mGenre"></span>
+            <span class="modal-badge badge-year" id="mYear"></span>
+          </div>
+          <div class="modal-score"><i class="ti ti-star" style="font-size:15px;" aria-hidden="true"></i> <span id="mScore"></span> / 10 &nbsp;·&nbsp; <span id="mRuntime"></span></div>
+          <br>
+          <p class="modal-synopsis" id="mSynopsis"></p>
+          <div class="modal-details" id="mDetails"></div>
+        </div>
+      </div>
+      <div class="media-section">
+        <div class="media-label">Official Trailer</div>
+        <div class="trailer-box" id="mTrailer"></div>
+        <div class="audio-row" id="mAudio"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<section id="reviews" style="background:var(--bg2);">
+  <div class="si">
+    <p class="eyebrow">Community</p>
+    <h2 class="stitle">Leave a <em>Review</em></h2>
+    <div class="rev2">
+      <div class="rform">
+        <div class="fg"><label class="flabel">Your Name</label><input type="text" id="reviewName" placeholder="e.g. Chihiro"></div>
+        <div class="fg"><label class="flabel">Your Rating</label><div class="stars-row" id="starsInput"><button class="sbtn" onclick="setRating(1)">★</button><button class="sbtn" onclick="setRating(2)">★</button><button class="sbtn" onclick="setRating(3)">★</button><button class="sbtn" onclick="setRating(4)">★</button><button class="sbtn" onclick="setRating(5)">★</button></div></div>
+        <div class="fg"><label class="flabel">Your Review</label><textarea id="reviewText" rows="4" placeholder="Share your thoughts..."></textarea></div>
+        <button class="subbtn" onclick="submitReview()">Submit Review</button>
+        <p class="okMsg" id="okMsg">Your review has been added.</p>
+      </div>
+      <div>
+        <div class="rlist" id="reviewList">
+          <div class="rcard"><div class="rhead"><div class="rname">Miyazaki Fan</div><div class="rstars">★★★★★</div></div><p class="rtext">"A film that rewards every revisit. Chihiro's quiet growth is one of cinema's great character arcs."</p></div>
+          <div class="rcard"><div class="rhead"><div class="rname">Studio Ghibli Lover</div><div class="rstars">★★★★★</div></div><p class="rtext">"No-Face is one of the most haunting characters ever animated. The sea train sequence alone is worth the entire film."</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="ftitle">Spirited Away</div>
+  <div class="fkanji">千と千尋の神隠し</div>
+  <p class="fcopy">A tribute to the 2001 film directed by Hayao Miyazaki<br>Produced by Studio Ghibli · Fan showcase — not affiliated with Studio Ghibli</p>
+</footer>
+
+<script>
+const MOVIES = [
+  {
+    id:1,kanji:'千',posterBg:'linear-gradient(160deg,#1a1528,#3d2560)',
+    title:'Spirited Away',year:2001,genre:'Fantasy',genres:['fantasy'],
+    rating:9.3,runtime:'125 min',
+    director:'Hayao Miyazaki',music:'Joe Hisaishi',studio:'Studio Ghibli',award:'Academy Award 2003',
+    synopsis:'Ten-year-old Chihiro stumbles into the spirit world and must work at a magical bathhouse to rescue her parents, who have been turned into pigs by a witch named Yubaba. A breathtaking journey of identity, courage, and growing up.',
+    trailer:'https://www.youtube.com/embed/ByXuk9QqQkk?rel=0',
+    audio:[
+      {label:'Theme: "One Summer\'s Day" — Joe Hisaishi',src:'https://cdn.jsdelivr.net/gh/Ruddickmg/sound@master/data/sounds/placeholder.mp3'}
+    ]
+  },
+  {
+    id:2,kanji:'も',posterBg:'linear-gradient(160deg,#0f1f10,#1e4020)',
+    title:"My Neighbor Totoro",year:1988,genre:'Fantasy',genres:['fantasy','adventure'],
+    rating:8.2,runtime:'86 min',
+    director:'Hayao Miyazaki',music:'Joe Hisaishi',studio:'Studio Ghibli',award:'Mainichi Film Award',
+    synopsis:'Two sisters, Satsuki and Mei, move to the countryside with their father while their mother recovers in hospital. They discover magical forest spirits — including the giant, lovable Totoro — living in a nearby camphor tree.',
+    trailer:'https://www.youtube.com/embed/92a7Hj0ijLs?rel=0',
+    audio:[
+      {label:'Theme: "My Neighbor Totoro" — Joe Hisaishi',src:''}
+    ]
+  },
+  {
+    id:3,kanji:'魔',posterBg:'linear-gradient(160deg,#0a0a20,#1a1a50)',
+    title:"Kiki's Delivery Service",year:1989,genre:'Adventure',genres:['adventure','drama'],
+    rating:7.9,runtime:'103 min',
+    director:'Hayao Miyazaki',music:'Joe Hisaishi',studio:'Studio Ghibli',award:'Animage Grand Prix 1989',
+    synopsis:'Thirteen-year-old witch Kiki moves to a coastal city to complete her year of independent training. She sets up a delivery service, struggles with self-doubt, and learns what it means to find her own place in the world.',
+    trailer:'https://www.youtube.com/embed/4bG17OYs-GA?rel=0',
+    audio:[
+      {label:'Theme: "A Town with an Ocean View" — Joe Hisaishi',src:''}
+    ]
+  },
+  {
+    id:4,kanji:'ハ',posterBg:'linear-gradient(160deg,#1a0808,#401010)',
+    title:"Howl's Moving Castle",year:2004,genre:'Fantasy',genres:['fantasy','adventure'],
+    rating:8.2,runtime:'119 min',
+    director:'Hayao Miyazaki',music:'Joe Hisaishi',studio:'Studio Ghibli',award:'Academy Award Nominated',
+    synopsis:'Sophie, a young hat-maker, is cursed by a jealous witch to walk in the body of an old woman. She finds refuge in the enchanted moving castle of the wizard Howl — and discovers that love and war have more in common than she thought.',
+    trailer:'https://www.youtube.com/embed/iwROgK94zcM?rel=0',
+    audio:[
+      {label:'Theme: "Merry-Go-Round of Life" — Joe Hisaishi',src:''}
+    ]
+  },
+  {
+    id:5,kanji:'も火',posterBg:'linear-gradient(160deg,#1a0f00,#402800)',
+    title:"Grave of the Fireflies",year:1988,genre:'Drama',genres:['drama'],
+    rating:8.5,runtime:'89 min',
+    director:'Isao Takahata',music:'Michio Mamiya',studio:'Studio Ghibli',award:'Kinema Junpo Top 10',
+    synopsis:'In the final months of World War II, a young boy and his little sister struggle to survive in war-torn Japan. One of the most devastating anti-war films ever made — a poetic meditation on innocence, loss, and the human cost of conflict.',
+    trailer:'https://www.youtube.com/embed/4vPeTSRd580?rel=0',
+    audio:[
+      {label:'Theme: "Home Again" — Michio Mamiya',src:''}
+    ]
+  },
+  {
+    id:6,kanji:'風',posterBg:'linear-gradient(160deg,#0f1820,#1a3040)',
+    title:"The Wind Rises",year:2013,genre:'Drama',genres:['drama','adventure'],
+    rating:7.8,runtime:'126 min',
+    director:'Hayao Miyazaki',music:'Joe Hisaishi',studio:'Studio Ghibli',award:'Academy Award Nominated',
+    synopsis:'Based on the life of Jiro Horikoshi, the designer of the famous Zero fighter plane. A lyrical, dreamlike biography about ambition, beauty, and the moral weight of creating something that can be turned to destruction.',
+    trailer:'https://www.youtube.com/embed/nDyUC3CKHY4?rel=0',
+    audio:[
+      {label:'Theme: "Wind" — Joe Hisaishi',src:''}
+    ]
+  }
+];
+
+let activeFilter = 'all';
+
+function buildGrid() {
+  const grid = document.getElementById('mgGrid');
+  grid.innerHTML = '';
+  const filtered = activeFilter === 'all' ? MOVIES : MOVIES.filter(m => m.genres.includes(activeFilter));
+  filtered.forEach(m => {
+    const card = document.createElement('div');
+    card.className = 'mg-card';
+    const stars = Math.round(m.rating / 2);
+    const starsStr = '★'.repeat(stars) + '☆'.repeat(5 - stars);
+    card.innerHTML = `
+      <div class="mg-poster" style="background:${m.posterBg};">
+        <div style="font-size:3.5rem;color:rgba(255,255,255,0.15);font-family:serif;letter-spacing:.2em;">${m.kanji}</div>
+        <div style="font-family:Palatino,serif;font-size:.85rem;color:rgba(255,255,255,0.7);letter-spacing:.08em;margin-top:.4rem;">${m.title}</div>
+        <div class="mg-poster-overlay">
+          <div class="mg-play-icon"><i class="ti ti-player-play" style="font-size:18px;" aria-hidden="true"></i></div>
+        </div>
+      </div>
+      <div class="mg-info">
+        <div class="mg-title">${m.title}</div>
+        <div class="mg-year">${m.genre} · ${m.year}</div>
+        <div class="mg-rating"><span class="mg-stars">${starsStr}</span> ${m.rating}/10</div>
+      </div>`;
+    card.onclick = () => openModal(m.id);
+    grid.appendChild(card);
+  });
+}
+
+function filterMovies(cat, btn) {
+  activeFilter = cat;
+  document.querySelectorAll('.mg-filters .fbtn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  buildGrid();
+}
+
+function openModal(id) {
+  const m = MOVIES.find(x => x.id === id);
+  if (!m) return;
+  document.getElementById('modalTitle').textContent = m.title;
+  document.getElementById('mPosterKanji').textContent = m.kanji;
+  document.getElementById('mPosterTitle').textContent = m.title;
+  document.getElementById('mTitle').textContent = m.title;
+  document.getElementById('mGenre').textContent = m.genre;
+  document.getElementById('mYear').textContent = m.year;
+  document.getElementById('mScore').textContent = m.rating;
+  document.getElementById('mRuntime').textContent = m.runtime;
+  document.getElementById('mSynopsis').textContent = m.synopsis;
+  document.getElementById('mDetails').innerHTML = `
+    <div class="md-item"><div class="md-label">Director</div><div class="md-value">${m.director}</div></div>
+    <div class="md-item"><div class="md-label">Music</div><div class="md-value">${m.music}</div></div>
+    <div class="md-item"><div class="md-label">Studio</div><div class="md-value">${m.studio}</div></div>
+    <div class="md-item"><div class="md-label">Award</div><div class="md-value">${m.award}</div></div>`;
+  document.getElementById('mTrailer').innerHTML = `<iframe src="${m.trailer}" allowfullscreen title="${m.title} trailer"></iframe>`;
+  const audioRow = document.getElementById('mAudio');
+  audioRow.innerHTML = m.audio.filter(a => a.src).map(a => `
+    <div class="audio-item">
+      <div class="audio-label">${a.label}</div>
+      <audio controls><source src="${a.src}"><p style="font-size:.78rem;color:var(--tm);margin:0;">Audio preview unavailable in this environment.</p></audio>
+    </div>`).join('');
+  if (!m.audio.filter(a => a.src).length) {
+    audioRow.innerHTML = `<div class="audio-item"><div class="audio-label">${m.audio[0].label}</div><p style="font-size:.78rem;color:var(--tm);margin:0;">Soundtrack by ${m.music} — available on major streaming platforms.</p></div>`;
+  }
+  document.getElementById('mPosterTitle').style.background = m.posterBg;
+  document.querySelector('.modal-poster').style.background = m.posterBg.replace('linear-gradient','linear-gradient').replace('160deg','200deg');
+  document.getElementById('modalWrap').classList.add('open');
+}
+
+function closeModal(e) {
+  if (e.target === document.getElementById('modalWrap')) closeModalDirect();
+}
+function closeModalDirect() {
+  document.getElementById('modalWrap').classList.remove('open');
+  document.getElementById('mTrailer').innerHTML = '';
+}
+
+function filterChars(cat, btn) {
+  document.querySelectorAll('#charGrid .fbtn, .cfilters .fbtn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  document.querySelectorAll('.ccard').forEach(c => {
+    c.style.display = (cat === 'all' || c.dataset.cat === cat) ? 'block' : 'none';
+  });
+}
+
+let isDark = true;
+function toggleTheme() {
+  isDark = !isDark;
+  document.documentElement.setAttribute('data-theme', isDark ? 'dark' : 'light');
+  document.getElementById('themeBtn').innerHTML = isDark
+    ? '<i class="ti ti-sun" aria-hidden="true"></i> Light'
+    : '<i class="ti ti-moon" aria-hidden="true"></i> Dark';
+}
+
+let selectedRating = 0;
+function setRating(val) {
+  selectedRating = val;
+  document.querySelectorAll('.sbtn').forEach((b,i) => b.classList.toggle('active', i < val));
+}
+function submitReview() {
+  const name = document.getElementById('reviewName').value.trim();
+  const text = document.getElementById('reviewText').value.trim();
+  if (!name || !text || !selectedRating) return;
+  const stars = '★'.repeat(selectedRating) + '☆'.repeat(5 - selectedRating);
+  const card = document.createElement('div');
+  card.className = 'rcard';
+  card.innerHTML = `<div class="rhead"><div class="rname">${name}</div><div class="rstars">${stars}</div></div><p class="rtext">"${text}"</p>`;
+  document.getElementById('reviewList').prepend(card);
+  document.getElementById('reviewName').value = '';
+  document.getElementById('reviewText').value = '';
+  setRating(0);
+  const msg = document.getElementById('okMsg');
+  msg.style.display = 'block';
+  setTimeout(() => msg.style.display = 'none', 3000);
+}
+
+buildGrid();
+</script>
